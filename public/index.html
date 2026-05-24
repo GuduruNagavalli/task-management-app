@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Management App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="hero-panel">
+      <div class="hero-brand">
+        <span class="logo">✔</span>
+        <div>
+          <h1>TaskFlow</h1>
+          <p>Manage tasks, stay focused, deliver more.</p>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2>Organize work with clarity</h2>
+        <p>Sign in or create an account to track tasks, mark progress, and stay on top of deadlines.</p>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <section id="auth-section" class="card auth-card">
+        <div class="auth-switch">
+          <button id="show-login" class="active">Login</button>
+          <button id="show-signup">Signup</button>
+        </div>
+
+        <div id="offline-banner" class="offline-banner hidden">
+          <p>Database offline — login and signup are disabled. Use temporary task storage while the backend is available.</p>
+          <button id="guest-mode-button" class="btn-secondary">Continue Offline</button>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <h2>Welcome back</h2>
+          <p>Login to manage your tasks.</p>
+          <label>Email<input type="email" id="login-email" required /></label>
+          <label>Password<input type="password" id="login-password" required minlength="6" /></label>
+          <button type="submit" class="btn-primary">Login</button>
+          <p class="message" id="login-message"></p>
+        </form>
+
+        <form id="signup-form" class="auth-form hidden">
+          <h2>Create account</h2>
+          <p>Join TaskFlow and keep your workflow moving.</p>
+          <label>Name<input type="text" id="signup-name" required /></label>
+          <label>Email<input type="email" id="signup-email" required /></label>
+          <label>Password<input type="password" id="signup-password" required minlength="6" /></label>
+          <button type="submit" class="btn-primary">Signup</button>
+          <p class="message" id="signup-message"></p>
+        </form>
+      </section>
+
+      <section id="app-section" class="hidden">
+        <header class="topbar card">
+          <div>
+            <h2 id="welcome-title">Hello, builder</h2>
+            <p>Manage tasks with speed and confidence.</p>
+          </div>
+          <button id="logout-button" class="btn-secondary">Logout</button>
+        </header>
+
+        <section class="card task-creator">
+          <div class="section-header">
+            <h3>New Task</h3>
+            <span>Add a quick task or plan ahead with details.</span>
+          </div>
+          <form id="task-form" class="grid-form">
+            <label>Title<input type="text" id="task-title" required /></label>
+            <label>Description<textarea id="task-description" rows="3"></textarea></label>
+            <label>Due date<input type="date" id="task-due" /></label>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">Save Task</button>
+              <button type="button" id="cancel-edit" class="btn-tertiary hidden">Cancel Edit</button>
+            </div>
+            <p class="message" id="task-message"></p>
+          </form>
+        </section>
+
+        <section class="tasks-grid">
+          <div class="card tasks-panel">
+            <div class="section-header">
+              <h3>Pending Tasks</h3>
+              <span>Tasks to complete next.</span>
+            </div>
+            <div id="pending-tasks" class="task-list"></div>
+          </div>
+
+          <div class="card tasks-panel">
+            <div class="section-header">
+              <h3>Completed Tasks</h3>
+              <span>Celebrate your progress.</span>
+            </div>
+            <div id="completed-tasks" class="task-list"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
