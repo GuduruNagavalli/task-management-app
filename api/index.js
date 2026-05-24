@@ -1,7 +1,3 @@
-const { app, initApp } = require('../server');
-
-initApp().catch((error) => {
-  console.warn('Could not connect to MongoDB during initialization:', error?.message || error);
-});
+const app = require('../server');
 
 module.exports = app;
