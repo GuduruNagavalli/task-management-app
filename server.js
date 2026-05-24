@@ -28,14 +28,20 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-const startServer = async () => {
+const initApp = async () => {
   app.locals.dbConnected = await connectDB();
   if (!app.locals.dbConnected) {
     console.warn('Database unavailable. Running with temporary in-memory task storage.');
   }
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server started on port ${PORT} and bound to 0.0.0.0`);
-  });
+  return app;
 };
 
-startServer();
+if (require.main === module) {
+  initApp().then(() => {
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server started on port ${PORT} and bound to 0.0.0.0`);
+    });
+  });
+}
+
+module.exports = { app, initApp };
